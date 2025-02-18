@@ -12,7 +12,8 @@
         <!-- Email Address Input Field -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" oninput="this.value=this.value.toLowerCase()" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" oninput="this.value=this.value.toLowerCase()" onfocusout="isEmailExist()"/>
+            <div id="messageBox"></div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -34,7 +35,6 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password Input Field with Toggle Visibility Button -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
             <div class="relative">
@@ -62,43 +62,5 @@
             </x-primary-button>
         </div>
     </form>
-
-    <!-- External JavaScript for Password Toggle and Length Display -->
-    <script>
-        // Function to count password length and change input color
-        function countPasswordLength(inputId, lengthDisplayId) {
-            const passwordField = document.getElementById(inputId);
-            const lengthDisplay = document.getElementById(lengthDisplayId);
-            const passwordLength = passwordField.value.length;
-
-            // Set password field color based on length
-            if (passwordLength < 5) {
-                passwordField.style.color = 'red';
-            } else if (passwordLength < 8) {
-                passwordField.style.color = 'yellow';
-            } else {
-                passwordField.style.color = 'green';
-            }
-
-            // Display the password length
-            lengthDisplay.textContent = passwordLength;
-        }
-
-        // Function to toggle password visibility
-        function togglePassword(inputId, eyeIconId, lengthDisplayId) {
-            const passwordField = document.getElementById(inputId);
-            const eyeIcon = document.getElementById(eyeIconId);
-            const lengthDisplay = document.getElementById(lengthDisplayId);
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text"; // Show password
-                eyeIcon.setAttribute('stroke', 'green');
-                lengthDisplay.style.display = "block"; // Show length
-            } else {
-                passwordField.type = "password"; // Hide password
-                eyeIcon.setAttribute('stroke', 'currentColor');
-                lengthDisplay.style.display = "none"; // Hide length
-            }
-        }
-    </script>
+    <script src="/js/user.js"></script>
 </x-guest-layout>
