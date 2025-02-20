@@ -11,7 +11,7 @@ class TaskController extends Controller
         // $tasks = Task::query()->where("user_id","DESC")
         // ->paginate(10);
 
-        $tasks = Task::query()
+        $tasks = Task::query()->orderBy("created_at", "DESC")
         ->paginate(10);
 
         return view("task.index",[

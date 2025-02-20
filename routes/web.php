@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProductBrandController;
 
 
 Route::get('/', function () {
@@ -14,10 +15,17 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::resource("blog", BlogController::class);
 });
 
-// task
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::resource("task", TaskController::class);
 });
+
+
+// task
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::resource("productBrand", ProductBrandController::class);
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

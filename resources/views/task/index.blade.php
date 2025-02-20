@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex flex-col items-center min-h-screen bg-gray-100 p-6">
+    <div class="flex flex-col items-center bg-gray-100 p-6">
         <div class="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold text-gray-800">Task List</h2>
@@ -18,10 +18,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $sl = 1; @endphp
                     @foreach($tasks as $task)
                     
                         <tr class="hover:bg-gray-100">
-                            <td class="border border-gray-300 p-2 text-center">{{ $task->id }}</td>
+                            <td class="border border-gray-300 p-2 text-center">{{ $sl }}</td>
                             <td class="border border-gray-300 p-2">{{ $task->title }}</td>
                             <td class="border border-gray-300 p-2">{{ $task->description }}</td>
 
@@ -38,6 +39,7 @@
                                 </form>
                             </td>
                         </tr>
+                        @php $sl += 1; @endphp
                     @endforeach
                 </tbody>
             </table>

@@ -17,9 +17,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $sl = 1; @endphp
                     @foreach($blogs as $blog)
                         <tr class="hover:bg-gray-100">
-                            <td class="border border-gray-300 p-2 text-center">{{ $blog->id }}</td>
+                            <td class="border border-gray-300 p-2 text-center">{{ $sl }}</td>
                             <td class="border border-gray-300 p-2">{{ $blog->title }}</td>
                             <td class="border border-gray-300 p-2">{{ $blog->description }}</td>
                             <td class="border border-gray-300 p-2">{{ $blog->created_at }}</td>
@@ -33,6 +34,7 @@
                                 </form>
                             </td>
                         </tr>
+                        @php $sl += 1; @endphp
                     @endforeach
                 </tbody>
             </table>
